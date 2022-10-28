@@ -51,16 +51,16 @@ public class MoveNActiveGO : MonoBehaviour
     }
     private void FixedUpdate() {
         if(Front){
-            move(new Vector3(0,0,-speed));
-        }
-        if(Back){
             move(new Vector3(0,0,speed));
         }
+        if(Back){
+            move(new Vector3(0,0,-speed));
+        }
         if(Left){
-            move(new Vector3(speed,0,0));
+            move(new Vector3(-speed,0,0));
         }
         if(Right){
-            move(new Vector3(-speed,0,0));
+            move(new Vector3(speed,0,0));
         }
         if(Up){
             move(new Vector3(0,speed,0));
