@@ -81,4 +81,7 @@ public class MoveNActiveGO : MonoBehaviour
         vec.z = Mathf.Clamp(vec.z, Min.z, Max.z);
         return vec;
     }
+    public void SetGO(GameObject toGO){
+        objToModifiy = toGO;
+    }
 }
