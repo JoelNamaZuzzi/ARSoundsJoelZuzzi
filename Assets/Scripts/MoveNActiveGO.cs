@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MoveNActiveGO : MonoBehaviour
 {
     public GameObject objToModifiy;
     public Vector3 Min;
     public Vector3 Max;
-    [Range (0f, 0.1f)]
+    [Range (0f, 1f)]
     public float speed;
+    [Range (1f, 10f)]
+    public float RotSpeed;
     private bool Front=false;
     private bool Back=false;
     private bool Left=false;
@@ -17,6 +20,8 @@ public class MoveNActiveGO : MonoBehaviour
     private bool Down=false;
     private bool RotLeft=false;
     private bool RotRight=false;
+    [SerializeField] private TMP_Text MoveTXT;
+    [SerializeField] private TMP_Text RotTXT;
     private void move(Vector3 mov){
         objToModifiy.transform.position =  Clamp(objToModifiy.transform.position + mov);
     }
@@ -44,7 +49,6 @@ public class MoveNActiveGO : MonoBehaviour
     }
     public void RotateLeft(bool setbool){
         RotLeft = setbool;
-
     }
     public void RotateRight(bool setbool){
         RotRight = setbool;
@@ -69,10 +73,10 @@ public class MoveNActiveGO : MonoBehaviour
             move(new Vector3(0,-speed,0));
         }
         if(RotLeft){
-            rotate(0,speed,0);
+            rotate(0,RotSpeed,0);
         }
         if(RotRight){
-            rotate(0,-speed,0);
+            rotate(0,-RotSpeed,0);
         }
     }
     private Vector3 Clamp(Vector3 vec){
@@ -83,5 +87,21 @@ public class MoveNActiveGO : MonoBehaviour
     }
     public void SetGO(GameObject toGO){
         objToModifiy = toGO;
+    }
+
+    public void SetMoveSpeed(float value)
+    {
+        speed = value;
+        MoveTXT.text = value.ToString("F2");
+    }
+    public void SetRotSpeed(float spd)
+    {
+        RotSpeed = spd;
+        RotTXT.text = spd.ToString("F0");
+    }
+    
+    public void ToggleGO()
+    {
+        objToModifiy.SetActive(!objToModifiy.activeSelf);
     }
 }
