@@ -92,7 +92,7 @@ public class MoveNActiveGO : MonoBehaviour
     public void SetMoveSpeed(float value)
     {
         speed = value;
-        MoveTXT.text = value.ToString("F2");
+        MoveTXT.text = value.ToString("F3");
     }
     public void SetRotSpeed(float spd)
     {
